@@ -11,11 +11,14 @@ app.get("/", (req, res)=>{
 })
 app.get("/sum", (request, response) => {
     let a = 0;
+    if(JSON.stringify(request.body)==="{}"){
+        response.send("Json Parameters : Unlimited key value pairs\nNo restriction on keys length and names\nValues should be numbers");
+    }
     Object.entries(request.body).forEach(([key,value])=>{
         a = a+value;
     });
     if(isNaN(a)){
-        response.send("Json Parameters : Unlimited key value pairs\nNo restriction on keys\nValues should be numbers");
+        response.send("Json Parameters : Unlimited key value pairs\nNo restriction on keys length and names\nValues should be numbers");
     }else{
         response.send(`${a}`);
     }
@@ -38,7 +41,7 @@ app.get("/product", (request, response) => {
         a = a*value;
     });
     if(isNaN(a)){
-        response.send("Json Parameters : Unlimited key value pairs\nNo restriction on keys\nValues should be numbers");
+        response.send("Json Parameters : Unlimited key value pairs\nNo restriction on keys names and length\nValues should be numbers");
     }else{
         response.send(`${a}`);
     }
