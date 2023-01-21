@@ -1,9 +1,14 @@
+const { response } = require("express");
 const express = require("express");
 
 const app = express();
 
 const PORT = 4001;
 app.use(express.json());
+
+app.get("/", (req, res)=>{
+    res.send("/sum for sum api\n/product for product api\n/subtract for subtract api")
+})
 app.get("/sum", (request, response) => {
     let a = 0;
     Object.entries(request.body).forEach(([key,value])=>{
